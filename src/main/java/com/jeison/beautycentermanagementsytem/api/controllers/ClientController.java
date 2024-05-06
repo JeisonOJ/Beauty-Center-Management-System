@@ -32,6 +32,5 @@ public class ClientController {
     public ResponseEntity<ClientResponse> getById(@PathVariable Long id) {
         return ResponseEntity.ok(clientService.findByIdWithDetails(id));
     }
-    
 
 }

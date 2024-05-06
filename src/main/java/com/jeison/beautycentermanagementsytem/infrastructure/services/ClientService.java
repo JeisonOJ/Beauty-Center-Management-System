@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.jeison.beautycentermanagementsytem.api.dto.request.ClientRequest;
 import com.jeison.beautycentermanagementsytem.api.dto.response.ClientResponse;
-import com.jeison.beautycentermanagementsytem.domain.entities.Client;
+import com.jeison.beautycentermanagementsytem.domain.entities.ClientEntity;
 import com.jeison.beautycentermanagementsytem.domain.repositories.AppointmentRepository;
 import com.jeison.beautycentermanagementsytem.domain.repositories.ClientRepository;
 import com.jeison.beautycentermanagementsytem.infrastructure.abstract_services.IClientService;
@@ -32,7 +32,7 @@ public class ClientService implements IClientService {
 
     @Override
     public ClientResponse findByIdWithDetails(Long id) {
-        Client client = clientRepository.findById(id).orElseThrow();
+        ClientEntity client = clientRepository.findById(id).orElseThrow();
         ClientResponse clientResponse = ObjectConverter.ClientToResponse(client);
         clientResponse.setAppointment(appointmentRepository.findByClientId(client.getId()).stream().map(appointment -> ObjectConverter.appointmentToResponse(appointment)).collect(Collectors.toList()));
         return clientResponse;
@@ -40,24 +40,24 @@ public class ClientService implements IClientService {
 
     @Override
     public ClientResponse create(ClientRequest request) {
-        return ObjectConverter.ClientToResponse(clientRepository.save(ObjectConverter.requestToClient(request, new Client())));
+        return ObjectConverter.ClientToResponse(clientRepository.save(ObjectConverter.requestToClient(request, new ClientEntity())));
 
     }
 
     @Override
     public ClientResponse update(ClientRequest request, Long id) {
-        Client client = getById(id);
+        ClientEntity client = getById(id);
         return ObjectConverter.ClientToResponse(clientRepository.save(ObjectConverter.requestToClient(request, client)));
 
     }
 
     @Override
     public void delete(Long id) {
-        Client client = getById(id);
+        ClientEntity client = getById(id);
         clientRepository.delete(client);
     }
 
-    private Client getById(Long id){
+    private ClientEntity getById(Long id){
         return clientRepository.findById(id).orElseThrow();
     }
 
