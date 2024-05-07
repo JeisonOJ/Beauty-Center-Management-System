@@ -1,6 +1,7 @@
 package com.jeison.beautycentermanagementsytem.infrastructure.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -55,8 +56,8 @@ public class AppointmentService implements IAppointmentService{
     }
 
     @Override
-    public List<Appointment> findByClientId(Long id) {
-        return appointmentRepository.findByClientId(id);
+    public Optional<Appointment> findByClientId(Long id) {
+        return appointmentRepository.findByClientById(id);
     }
 
 }

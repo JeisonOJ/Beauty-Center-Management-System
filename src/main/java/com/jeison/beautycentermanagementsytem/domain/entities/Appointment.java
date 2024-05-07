@@ -29,7 +29,7 @@ public class Appointment {
     @Column(nullable = false)
     private LocalDateTime date;
     @Column(nullable = false)
-    private int durarion;
+    private Integer durarion;
     @Lob
     private String comments;
     @ManyToOne(fetch = FetchType.LAZY)

@@ -34,7 +34,7 @@ public class ClientService implements IClientService {
     public ClientResponse findByIdWithDetails(Long id) {
         ClientEntity client = clientRepository.findById(id).orElseThrow();
         ClientResponse clientResponse = ObjectConverter.ClientToResponse(client);
-        clientResponse.setAppointment(appointmentRepository.findByClientId(client.getId()).stream().map(appointment -> ObjectConverter.appointmentToResponse(appointment)).collect(Collectors.toList()));
+        // clientResponse.setAppointment(appointmentRepository.findByClientId(client.getId()).stream().map(appointment -> ObjectConverter.appointmentToResponse(appointment)).collect(Collectors.toList()));
         return clientResponse;
     }
 

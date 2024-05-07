@@ -2,7 +2,7 @@ package com.jeison.beautycentermanagementsytem.domain.entities;
 
 import java.util.List;
 
-import com.jeison.beautycentermanagementsytem.utils.RoleEmployee;
+import com.jeison.beautycentermanagementsytem.utils.enums.RoleEmployee;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;

@@ -8,8 +8,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
 public class ClientResponse {
 
@@ -18,6 +18,6 @@ public class ClientResponse {
     private String lastName;
     private String phone;
     private String email;
-    private List<AppointmentResponse> appointment;
+    private List<SimpleAppoinmentResp> appointment;
 
 }
