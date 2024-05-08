@@ -1,5 +1,7 @@
 package com.jeison.beautycentermanagementsytem.api.dto.response;
 
+import java.math.BigDecimal;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,6 +16,6 @@ public class ServiceResponse {
     private Long id;
     private String name;
     private String description;
-    private double price;
+    private BigDecimal price;
     
 }

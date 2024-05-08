@@ -11,14 +11,24 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import com.jeison.beautycentermanagementsytem.api.dto.erros.BaseErrorResp;
 import com.jeison.beautycentermanagementsytem.api.dto.erros.ErrorsResp;
+import com.jeison.beautycentermanagementsytem.utils.exception.BadRequestException;
 
 @RestControllerAdvice
 @ResponseStatus(code = HttpStatus.BAD_REQUEST)
 public class BadRequestController {
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public BaseErrorResp handleBadRequest(MethodArgumentNotValidException exception){
+    public BaseErrorResp handleBadRequest(MethodArgumentNotValidException exception) {
         List<String> errors = new ArrayList<>();
-        exception.getAllErrors().forEach(error -> errors.add(error.getDefaultMessage()));;
-        return ErrorsResp.builder().code(HttpStatus.BAD_REQUEST.value()).status(HttpStatus.BAD_REQUEST.name()).errors(errors).build();
+        exception.getAllErrors().forEach(error -> errors.add(error.getDefaultMessage()));
+        ;
+        return ErrorsResp.builder().code(HttpStatus.BAD_REQUEST.value()).status(HttpStatus.BAD_REQUEST.name())
+                .errors(errors).build();
+    }
+    @ExceptionHandler(BadRequestException.class)
+    public BaseErrorResp badRequest(BadRequestException exception) {
+        List<String> errors = new ArrayList<>();
+        errors.add(exception.getMessage());
+        return ErrorsResp.builder().code(HttpStatus.BAD_REQUEST.value()).status(HttpStatus.BAD_REQUEST.name())
+        .errors(errors).build();
     }
 }
